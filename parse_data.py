@@ -70,5 +70,5 @@ def vw_data(folds, num_tweets=50):
 
 if __name__ == '__main__':
     for i in range(10):
-        fp = open('vw.%d'%(i), 'w')
+        fp = open('vw.%d.data'%(i), 'w')
         fp.write(vw_data([i], 100).encode('utf-8') + '\n')
