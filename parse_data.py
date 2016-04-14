@@ -2,7 +2,7 @@ import json
 import sys
 import random
 
-data_path = '/Users/bcsiriuschen/Desktop/data/clpsych2015/schizophrenia/'
+data_path = '../data/schizophrenia/'
 
 def parse_cvs():
     cvs_data = []
