@@ -4,6 +4,7 @@ import random
 
 data_path = '../data/schizophrenia/'
 
+
 def parse_cvs():
     cvs_data = []
     for line in open(data_path + '/anonymized_user_manifest.csv').readlines()[1:]:
@@ -20,6 +21,7 @@ def parse_cvs():
         cvs_data.append(data_entry)
     return cvs_data
 
+
 def preprocess_tweet(tweet):
     tweet = tweet.replace(':','COLON').replace('|','PIPE').replace('\n', 'NEWLINE')
     tweet = ' '.join([x for x in tweet.split(' ') if not x.startswith('httpCOLON//')])
@@ -28,7 +30,7 @@ def preprocess_tweet(tweet):
 
 def get_tweets(user_id, num_tweets=-1):
     result = []
-    tweets = open('%s/%s.tweets'%(data_path, user_id)).readlines()
+    tweets = open('%s/%s.tweets' % (data_path, user_id)).readlines()
     count = 0
     for tweet in tweets:
         tweet_data = json.loads(tweet)
@@ -39,12 +41,14 @@ def get_tweets(user_id, num_tweets=-1):
             break
     return result
 
+
 def get_label(user_id):
     cvs_data = parse_cvs()
     for entry in cvs_data:
         if entry['user_id'] == user_id:
             return entry['label']
     return None
+
 
 def get_user_ids(folds):
     result = []
@@ -54,11 +58,13 @@ def get_user_ids(folds):
             result.append(entry['user_id'])
     return result
 
+
 def vw_entry(tweets, label):
     if label > 0:
-        return '+1 | %s'%(' '.join(tweets))
+        return '+1 | %s' % (' '.join(tweets))
     else:
-        return '-1 | %s'%(' '.join(tweets))
+        return '-1 | %s' % (' '.join(tweets))
+
 
 def vw_data(folds, num_tweets=50):
     result = []
@@ -70,5 +76,5 @@ def vw_data(folds, num_tweets=50):
 
 if __name__ == '__main__':
     for i in range(10):
-        fp = open('vw.%d.data'%(i), 'w')
+        fp = open('vw.%d.data' % (i), 'w')
         fp.write(vw_data([i], 100).encode('utf-8') + '\n')
