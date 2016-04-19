@@ -1,16 +1,5 @@
+# This file turn ./LIWC2007_updated.dic to a jason file that is easy to search
 import json
-'''
-The LIWC .dic format looks like this:
-%
-1   funct
-2   pronoun
-%
-a   1   10
-abdomen*    146 147
-about   1   16  17
-
-pipe that file into this, get a json trie on stdout
-'''
 
 categories = {}
 trie = {}
