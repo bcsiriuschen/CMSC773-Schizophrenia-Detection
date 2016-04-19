@@ -1,4 +1,4 @@
 # CMSC773-Schizophrenia-Detection
-Han-Chin Shing
-
+Han-Chin Shing  
 Bor-Chun Chen
+

@@ -24,7 +24,7 @@ def parse_cvs():
 
 def preprocess_tweet(tweet):
     tweet = tweet.replace(':','COLON').replace('|','PIPE').replace('\n', 'NEWLINE')
-    tweet = ' '.join([x for x in tweet.split(' ') if not x.startswith('httpCOLON//')])
+    tweet = ' '.join([x for x in tweet.split(' ') if not x.startswith('httpCOLON//') and not x.startswith('httpsCOLON//')])
     return tweet
 
 
