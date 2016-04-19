@@ -18,8 +18,6 @@ class Liwc():
                      'filler']
 
     def __init__(self):
-        self.all_keys = self.meta_keys + self.category_keys[:-1] + self.puncuation_keys
-
         with open(self.corpus_filepath) as corpus_file:
             self._trie = json.load(corpus_file)
 
@@ -44,4 +42,20 @@ class Liwc():
     def read_document(self, document, token_pattern=r"[a-z]['a-z]*"):
         for match in re.finditer(token_pattern, document.lower()):
             for category in self.read_token(match.group(0)):
-                yield category
+                yield (match.group(0), category)
+
+    def count_tokens_in_categories(self, document):
+        categories = {}
+        for key in self.category_keys:
+            categories[key] = Counter()
+
+        for token, category in self.read_document(document):
+            categories[category][token] += 1
+
+        return categories
+
+if __name__ == '__main__':
+    liwc = Liwc()
+    document = ' '.join(open('../data/txt/liwc.7_kg7BsyyTy8.txt').readlines())
+    categories = liwc.count_tokens_in_categories(document)
+    print json.dumps(categories, sort_keys=True, indent=4, separators=(',', ': '))
