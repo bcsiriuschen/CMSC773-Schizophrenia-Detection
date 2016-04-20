@@ -3,7 +3,7 @@ from collections import Counter
 import json
 
 
-class Liwc():
+class LiwcEntropy():
     corpus_filepath = './LIWC2007_updated.trie'
 
     # category analysis variables:
