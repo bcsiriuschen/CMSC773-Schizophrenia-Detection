@@ -23,26 +23,26 @@ class Liwc():
 
     # standard Lexicon functionality:
 
-    def read_token(self, token, token_i=0, trie_cursor=None):
+    def read_token(self, token, token_i=0, trie_cursor=None, tokenStr=""):
         if trie_cursor is None:
             trie_cursor = self._trie
 
         if '*' in trie_cursor:
             for category in trie_cursor['*']:
-                yield category
+                yield (tokenStr+"*", category)
         elif '$' in trie_cursor and token_i == len(token):
             for category in trie_cursor['$']:
-                yield category
+                yield (tokenStr, category)
         elif token_i < len(token):
             letter = token[token_i]
             if letter in trie_cursor:
-                for category in self.read_token(token, token_i + 1, trie_cursor[letter]):
+                for category in self.read_token(token, token_i + 1, trie_cursor[letter], tokenStr + str(letter)):
                     yield category
 
     def read_document(self, document, token_pattern=r"[a-z]['a-z]*"):
         for match in re.finditer(token_pattern, document.lower()):
             for category in self.read_token(match.group(0)):
-                yield (match.group(0), category)
+                yield category
 
     def count_tokens_in_categories(self, document):
         categories = {}
