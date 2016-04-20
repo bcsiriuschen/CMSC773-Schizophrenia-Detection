@@ -55,7 +55,7 @@ class LiwcEntropy():
         return categories
 
 if __name__ == '__main__':
-    liwc = Liwc()
+    liwc = LiwcEntropy()
     document = ' '.join(open('../data/txt/liwc.7_kg7BsyyTy8.txt').readlines())
     categories = liwc.count_tokens_in_categories(document)
     print json.dumps(categories, sort_keys=True, indent=4, separators=(',', ': '))
