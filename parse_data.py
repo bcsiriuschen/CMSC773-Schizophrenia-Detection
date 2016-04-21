@@ -73,14 +73,16 @@ def vw_data(folds, num_tweets=50):
         result.append(vw_entry(get_tweets(user_id, num_tweets), get_label(user_id)))
     return '\n'.join(result) + '\n'
 
-if __name__ == '__main__':
+def generate_training_splits(func, prefix):
     for i in range(10):
-        # Create Training and Testing data
         train_folds = range(10)
         test_fold = [train_folds.pop(i)]
-        fp = open('vw.train.%d.data'%(i), 'w')
-        fp.write(vw_data(train_folds).encode('utf-8'))
+        fp = open('%s.train.%d.data'%(prefix, i), 'w')
+        fp.write(func(train_folds).encode('utf-8'))
         fp.close()
-        fp = open('vw.test.%d.data'%(i), 'w')
-        fp.write(vw_data(test_fold).encode('utf-8'))
+        fp = open('%s.test.%d.data'%(prefix, i), 'w')
+        fp.write(func(test_fold).encode('utf-8'))
         fp.close()
+
+if __name__ == '__main__':
+    generate_training_splits(vw_data, 'vw/vw')

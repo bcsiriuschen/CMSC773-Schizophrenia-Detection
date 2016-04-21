@@ -10,4 +10,5 @@ set ylabel "true positive rate"
 set xlabel "false positive rate"
 set key right bottom
 plot \
-    "vw.tpfp" using 2:1 with lines title "VW"
+    "vw.tpfp" using 2:1 with lines title "VW", \
+    "svm.tpfp" using 2:1 with lines title "LIWC-SVM"

@@ -1,4 +1,5 @@
 import os
+import sys
 
 def compute_accuracy(input_file, groundtruth_file):
     #Compute 0/1 Accuracy
@@ -44,9 +45,9 @@ def compute_auc(input_file, groundtruth_file):
 if __name__ == '__main__':
 
     # Input Parameters
-    input_file = 'vw.output'
+    input_file = sys.argv[1]#'svm.output'
     groundtruth_file = 'groundtruth.output'
-    output_file = 'vw.tpfp'
+    output_file = sys.argv[2]#'svm.tpfp'
 
     #Compute 0/1 Accuracy
     acc = compute_accuracy(input_file, groundtruth_file)
