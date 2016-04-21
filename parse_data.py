@@ -65,10 +65,16 @@ def vw_data(folds, num_tweets=50):
     user_ids = get_user_ids(folds)
     for user_id in user_ids:
         result.append(vw_entry(get_tweets(user_id, num_tweets), get_label(user_id)))
-    random.shuffle(result)
-    return '\n'.join(result)
+    return '\n'.join(result) + '\n'
 
 if __name__ == '__main__':
     for i in range(10):
-        fp = open('vw.%d.data'%(i), 'w')
-        fp.write(vw_data([i], 100).encode('utf-8') + '\n')
+        # Create Training and Testing data
+        train_folds = range(10)
+        test_fold = [train_folds.pop(i)]
+        fp = open('vw.train.%d.data', 'w')
+        fp.write(vw_data(train_folds).encode('utf-8'))
+        fp.close()
+        fp = open('vw.test.%d.data', 'w')
+        fp.write(vw_data(test_fold).encode('utf-8'))
+        fp.close()
