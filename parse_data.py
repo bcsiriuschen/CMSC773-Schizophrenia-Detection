@@ -78,9 +78,9 @@ if __name__ == '__main__':
         # Create Training and Testing data
         train_folds = range(10)
         test_fold = [train_folds.pop(i)]
-        fp = open('vw.train.%d.data', 'w')
+        fp = open('vw.train.%d.data'%(i), 'w')
         fp.write(vw_data(train_folds).encode('utf-8'))
         fp.close()
-        fp = open('vw.test.%d.data', 'w')
+        fp = open('vw.test.%d.data'%(i), 'w')
         fp.write(vw_data(test_fold).encode('utf-8'))
         fp.close()
