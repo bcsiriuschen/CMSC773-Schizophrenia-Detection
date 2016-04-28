@@ -14,7 +14,7 @@ txt_data_path = '../data/txt/'
 class HeatmapLiwc:
 
     def __init__(self):
-        pass
+        self.heatmapArray = []
 
     def normalized(self, counterIn):
         counter = Counter(counterIn)
@@ -33,28 +33,12 @@ class HeatmapLiwc:
         documentList = [' '.join(open('%sliwc.%s.txt' % (txt_data_path, user_id))) for user_id in self.getSortedId()]
         return documentList
 
-    def normalizedCategory(self, counterCategory):
-        normalCategory = {}
-        for category, counter in counterCategory.iteritems():
-            normalCategory[category] = self.normalized(counter)
-        return counterCategory
-
-    def getEntropy(self, counter):
-        # assume normalized
-        entropy = 0.0
-        for value in counter.values():
-            if value != 0.0:
-                entropy -= value * log(value, 2)
-        return entropy
-
-    def calculateScore(self, user1, user2):
-        sum = 0.0
-        for category, entropy in user1.iteritems():
-            sum += abs(entropy - user2[category])
-        return log(sum+1)
-
-    def calculateKLDivergence(self, user1Prob, user2Prob):
-        pass
+    def calculateKLDivergence(self, pProb, qProb):
+        klDivergence = 0.0
+        for category, prob in pProb.iteritems():
+            if prob != 0.0 and qProb[category] != 0.0:
+                klDivergence += prob * log(prob/qProb[category], 2)
+        return klDivergence
 
     def calculateKLDiverenceOverall(self, user1Count, user2Count):
         # user1Count and user2Count are counterCategory
@@ -64,32 +48,25 @@ class HeatmapLiwc:
         user2Prob = self.normalized(user2Overall)
         return self.calculateKLDivergence(user1Prob, user2Prob)
 
-    def getHeatmap(self, counterCategoryList):
-        heatmapArray = []
-        categoryEntropyList = []
+    def calculateHeatmap(self, counterCategoryList, heatmapType='overall'):
+        self.heatmapArray = []
 
-        for counterCategory in counterCategoryList:
-            counterCategory = self.normalizedCategory(counterCategory)
-            categoryEntropy = {}
-            for category, counter in counterCategory.iteritems():
-                categoryEntropy[category] = self.getEntropy(counter)
-            categoryEntropyList.append(categoryEntropy)
+        if heatmapType == 'overall':
+            for user1 in counterCategoryList:
+                heatmapRow = []
+                for user2 in counterCategoryList:
+                    heatmapRow.append(self.calculateKLDiverenceOverall(user1, user2))
+                self.heatmapArray.append(heatmapRow)
 
-        for user1 in categoryEntropyList:
-            heatmapRow = []
-            for user2 in categoryEntropyList:
-                heatmapRow.append(self.calculateScore(user1, user2))
-            heatmapArray.append(heatmapRow)
-
-        return heatmapArray
 
 if __name__ == '__main__':
-    documentList = getSortedDocumentList()
+    heatmap = HeatmapLiwc()
+    documentList = heatmap.getSortedDocumentList()
     liwc = liwcEntropy.LiwcEntropy()
     counterCategoryList = [liwc.count_tokens_in_categories(document) for document in documentList]
-    heatmapArray = getHeatmap(counterCategoryList)
-    Index = getSortedId()
-    df = DataFrame(heatmapArray, index=Index, columns=Index)
+    heatmap.calculateHeatmap(counterCategoryList, 'overall')
+    Index = heatmap.getSortedId()
+    df = DataFrame(heatmap.heatmapArray, index=Index, columns=Index)
 
     plt.pcolor(df)
     # plt.yticks(np.linspace(0.5, 10.0, num=len(df.index)), df.index)
