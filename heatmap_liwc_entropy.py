@@ -96,7 +96,6 @@ class HeatmapLiwc:
 
 if __name__ == '__main__':
     heatmap = HeatmapLiwc()
-    heatmap.getSortedId()
     heatmap.calculateHeatmap('JensonShannon')
     # Index = heatmap.getSortedId()
     df = DataFrame(heatmap.heatmapArray)
