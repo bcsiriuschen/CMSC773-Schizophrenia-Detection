@@ -42,12 +42,6 @@ class HeatmapLiwc:
     def getSortedId(self):
         userIds = parse.get_user_ids(range(10))
         sortedId = sorted(userIds, key=lambda user: parse.get_label(user))
-        russian1 = sortedId[199]
-        russian2 = sortedId[149]
-        sortedId.remove(russian1)
-        sortedId.remove(russian2)
-        germen1 = sortedId[270]
-        sortedId.remove(germen1)
         return sortedId
 
     def getSortedDocumentList(self):
