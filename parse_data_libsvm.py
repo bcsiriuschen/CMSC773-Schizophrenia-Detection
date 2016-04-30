@@ -12,5 +12,16 @@ def liwc_libsvm_data(folds):
         result.append(libsvm_entry(liwc_features[user_id], get_label(user_id)))
     return '\n'.join(result) + '\n'
 
+def feature_file_to_svm_format(feature_file, folds):
+    result = []
+    user_ids = get_user_ids(folds)
+    for line in open(feature_file):
+        line = line.split(',')
+        user_id = line[0].strip()
+        feature = [float(x.strip()) for x in line[1:]]
+        if user_id in user_ids:
+            result.append(libsvm_entry(line[1]), get_label(user_id))
+    return '\n'.join(result) + '\n'
+
 if __name__ == '__main__':
     generate_training_splits(liwc_libsvm_data, 'svm/liwc')
