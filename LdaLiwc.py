@@ -5,34 +5,22 @@ import parse_data as parse
 from nltk.tokenize import RegexpTokenizer
 from stop_words import get_stop_words
 from nltk.stem.porter import PorterStemmer
-from gensim import corpora
+from gensim import corpora, models
 import gensim
+import re
 
 
 class LdaLiwc:
     txt_data_path = '../data/txt/'
-    output_path = './ldafeatures'
-    category_keys = ['funct', 'pronoun', 'ppron', 'i', 'we', 'you', 'shehe',
-                     'they', 'ipron', 'article', 'verb', 'auxverb', 'past', 'present', 'future',
-                     'adverb', 'preps', 'conj', 'negate', 'quant', 'number', 'swear', 'social',
-                     'family', 'friend', 'humans', 'affect', 'posemo', 'negemo', 'anx', 'anger',
-                     'sad', 'cogmech', 'insight', 'cause', 'discrep', 'tentat', 'certain',
-                     'inhib', 'incl', 'excl', 'percept', 'see', 'hear', 'feel', 'bio', 'body',
-                     'health', 'sexual', 'ingest', 'relativ', 'motion', 'space', 'time', 'work',
-                     'achieve', 'leisure', 'home', 'money', 'relig', 'death', 'assent', 'nonfl',
-                     'filler']
+    output_path = './ldafeatures.csv'
+    output_path2 = './ldafeatures2.csv'
+    mylist = ['just', 'via', 'make', 'can', 'amp', 'get']
 
     def __init__(self):
-        self.tokenizer = RegexpTokenizer(r"[a-z]['a-z]*")
-        self.en_stop = get_stop_words('en')
+        self.tokenizer = RegexpTokenizer(r"[@a-z0-9]['a-z0-9]*")
         self.p_stemmer = PorterStemmer()
+        self.en_stop = [self.p_stemmer.stem(i) for i in get_stop_words('en')]
         self.topicNum = 20
-
-    def getLabelNum(self):
-        userIds = parse.get_user_ids(range(10))
-        self.posIdNum = sum([parse.get_label(user) for user in userIds if parse.get_label(user) == 1])
-        self.negIdNum = -1 * sum([parse.get_label(user) for user in userIds if parse.get_label(user) == -1])
-        print self.posIdNum, self.negIdNum
 
     def getSortedId(self):
         userIds = parse.get_user_ids(range(10))
@@ -46,28 +34,51 @@ class LdaLiwc:
     def runLDA(self):
         documentList = self.getSortedDocumentList()
         print 'document loaded'
+
         tokensList = self.tokenized(documentList)
         print 'tokenized'
-        stopList = self.removeStopWord(tokensList)
-        print 'remove stop word'
-        filterList = self.filterLIWC(stopList)
-        print 'filter by LIWC'
-        print filterList[0][:20]
-        stemList = self.stemming(filterList)
-        print 'stemming done'
-        self.dictionary = corpora.Dictionary(stemList)
+
+        filterList = self.preprocessing(tokensList)
+
+        self.dictionary = corpora.Dictionary(filterList)
         print 'dictionary built'
-        self.corpus = [self.dictionary.doc2bow(text) for text in stemList]
+
+        self.corpus = [self.dictionary.doc2bow(text) for text in filterList]
+        # self.tfidf = models.TfidfModel(self.corpus)
+        # print 'using tfidf'
+
         self.ldamodel = gensim.models.ldamodel.LdaModel(self.corpus, num_topics=self.topicNum, id2word=self.dictionary, passes=20)
         print 'finished training LDA'
 
+    def preprocessing(self, tokensList):
+        # filterList = self.filterLIWC(tokensList)
+        # print 'filter by LIWC'
+        # print filterList[0][:20]
+        tokensList = self.stemming(tokensList)
+        print 'stemming done'
+        tokensList = self.removeStopWord(tokensList)
+        print 'stop word removed'
+        print tokensList[5][:50]
+        print tokensList[20][:50]
+        return tokensList
+
     def outputLDAfeature(self):
         sortedId = self.getSortedId()
+        # featuresList = [self.ldamodel.get_document_topics(self.tfidf[self.corpus[documentId]]) for documentId in range(len(sortedId))]
+        # with open(self.output_path, 'w') as file:
+        #     for userId, features in zip(sortedId, featuresList):
+        #         file.write(userId)
+        #         featuresVec = [0 for i in range(self.topicNum)]
+        #         for dId, feature in features:
+        #             featuresVec[dId] = feature
+        #         for feature in featuresVec:
+        #             file.write(", "+str(feature))
+        #         file.write("\n")
         featuresList = [self.ldamodel.get_document_topics(self.corpus[documentId]) for documentId in range(len(sortedId))]
         with open(self.output_path, 'w') as file:
             for userId, features in zip(sortedId, featuresList):
                 file.write(userId)
-                featuresVec = [0.0 for i in range(self.topicNum)]
+                featuresVec = [0 for i in range(self.topicNum)]
                 for dId, feature in features:
                     featuresVec[dId] = feature
                 for feature in featuresVec:
@@ -77,6 +88,11 @@ class LdaLiwc:
     def tokenized(self, documentList):
         tokensList = []
         for document in documentList:
+            # remove all http and newline and colon
+            document = re.sub('COLON', ':', document)
+            document = re.sub('NEWLINE', ' ', document)
+            document = re.sub(r'http[s]?:\/\/(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', document)
+            document = re.sub(r'@[a-zA-Z0-9_]*', '', document)
             newDoc = document.lower()
             tokens = self.tokenizer.tokenize(newDoc)
             tokensList.append(tokens)
@@ -85,7 +101,10 @@ class LdaLiwc:
     def removeStopWord(self, tokensList):
         stopList = []
         for tokens in tokensList:
-            stopped_tokens = [i for i in tokens if i not in self.en_stop]
+            stopped_tokens = [i for i in tokens if
+                              i not in self.en_stop and
+                              len(i) >= 3 and
+                              i not in self.mylist]
             stopList.append(stopped_tokens)
         return stopList
 
@@ -111,5 +130,5 @@ class LdaLiwc:
 if __name__ == '__main__':
     ldaliwc = LdaLiwc()
     ldaliwc.runLDA()
-    print ldaliwc.ldamodel.print_topics(num_topics=20, num_words=20)
+    print ldaliwc.ldamodel.print_topics(num_topics=ldaliwc.topicNum, num_words=20)
     ldaliwc.outputLDAfeature()
