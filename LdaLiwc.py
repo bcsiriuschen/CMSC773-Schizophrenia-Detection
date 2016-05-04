@@ -14,7 +14,7 @@ class LdaLiwc:
     txt_data_path = '../data/txt/'
     output_path = './ldafeatures.csv'
     output_path2 = './ldafeatures2.csv'
-    mylist = ['just', 'via', 'make', 'can', 'amp', 'get']
+    mylist = ['just', 'via', 'make', 'can', 'amp', 'get', 'nbsp']
 
     def __init__(self):
         self.tokenizer = RegexpTokenizer(r"[@a-z0-9]['a-z0-9]*")
@@ -28,7 +28,19 @@ class LdaLiwc:
         return sortedId
 
     def getSortedDocumentList(self):
-        documentList = [' '.join(open('%sliwc.%s.txt' % (self.txt_data_path, user_id))) for user_id in self.getSortedId()]
+        self.userDocumentList = [' '.join(open('%sliwc.%s.txt' % (self.txt_data_path, user_id))) for user_id in self.getSortedId()]
+        documentLineList = [open('%sliwc.%s.txt' % (self.txt_data_path, user_id)).readlines() for user_id in self.getSortedId()]
+        tempDocumentList = []
+        for documentLine in documentLineList:
+            maxline = 300
+            for idx, line in enumerate(documentLine):
+                if idx % maxline == 0:
+                    newDoc = []
+                    tempDocumentList.append(newDoc)
+                else:
+                    newDoc.append(line)
+        documentList = [' '.join(tempDocument) for tempDocument in tempDocumentList]
+        print 'document num:', len(documentList)
         return documentList
 
     def runLDA(self):
@@ -49,6 +61,16 @@ class LdaLiwc:
 
         self.ldamodel = gensim.models.ldamodel.LdaModel(self.corpus, num_topics=self.topicNum, id2word=self.dictionary, passes=20)
         print 'finished training LDA'
+        print 'process original corpus'
+        self.processOriginal()
+
+    def processOriginal(self):
+
+        tokensList = self.tokenized(self.userDocumentList)
+        print 'tokenized'
+
+        filterList = self.preprocessing(tokensList)
+        self.corpusTotal = [self.dictionary.doc2bow(text) for text in filterList]
 
     def preprocessing(self, tokensList):
         # filterList = self.filterLIWC(tokensList)
@@ -74,7 +96,7 @@ class LdaLiwc:
         #         for feature in featuresVec:
         #             file.write(", "+str(feature))
         #         file.write("\n")
-        featuresList = [self.ldamodel.get_document_topics(self.corpus[documentId]) for documentId in range(len(sortedId))]
+        featuresList = [self.ldamodel.get_document_topics(self.corpusTotal[documentId]) for documentId in range(len(sortedId))]
         with open(self.output_path, 'w') as file:
             for userId, features in zip(sortedId, featuresList):
                 file.write(userId)
