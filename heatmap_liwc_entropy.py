@@ -9,11 +9,13 @@ from pandas import DataFrame
 import matplotlib.pyplot as plt
 import json
 import os
+import sys
 
 
 class HeatmapLiwc:
     txt_data_path = '../data/txt/'
     counterCategoryList_path = './counterCategoryList'
+    liwcEntropyFeatures_path = './liwcEntropyFeatures.csv'
     category_keys = ['funct', 'pronoun', 'ppron', 'i', 'we', 'you', 'shehe',
                      'they', 'ipron', 'article', 'verb', 'auxverb', 'past', 'present', 'future',
                      'adverb', 'preps', 'conj', 'negate', 'quant', 'number', 'swear', 'social',
@@ -42,6 +44,19 @@ class HeatmapLiwc:
         else:
             with open(self.counterCategoryList_path) as file:
                 self.counterCategoryList = json.load(file)
+
+    def outputLiwcEntropyFeatures(self):
+        sortedId = self.getSortedId()
+        with open(self.liwcEntropyFeatures_path, 'w') as file:
+            for idx, counterCategory in enumerate(self.counterCategoryList):
+                name = sortedId[idx]
+                file.write(name)
+                for category in self.category_keys:
+                    counter = counterCategory[category]
+                    userCategoryProb = self.normalized(counter)
+                    userCategoryEntropy = self.calculateEntropy(userCategoryProb)
+                    file.write(','+str(userCategoryEntropy))
+                file.write('\n')
 
     def getLabelNum(self):
         userIds = parse.get_user_ids(range(10))
@@ -154,12 +169,12 @@ if __name__ == '__main__':
     #     heatmap.evaluateHeatmap(category)
 
     # print heatmap.heatmapEvaluation.most_common()
-    heatmap.calculateHeatmap('time')
+    heatmap.outputLiwcEntropyFeatures()
     # Index = heatmap.getSortedId()
-    df = DataFrame(heatmap.heatmapArray)
+    # df = DataFrame(heatmap.heatmapArray)
     # , index=Index, columns=Index)
 
-    plt.pcolor(df)
+    # plt.pcolor(df)
     # plt.yticks(np.linspace(0.5, 10.0, num=len(df.index)), df.index)
     # plt.xticks(np.linspace(0.5, 10.0, num=len(df.columns)), df.columns)
-    plt.show()
+    # plt.show()
