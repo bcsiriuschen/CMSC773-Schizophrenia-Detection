@@ -35,4 +35,10 @@ Usage:
 
 draw a heatmap, with the i, j cordinate being the Janson-Shannon divergence between user i and user j.
 
+### Evaluations with SVM and VW using Feature file
+Usage: sh run_svm.sh feature_file output-prefix
+It will generate ROC curve using SVM and VW as classifier and compute the 0/1 loss
+
+
+
 

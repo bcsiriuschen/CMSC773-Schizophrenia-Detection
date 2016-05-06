@@ -1,13 +1,14 @@
 import json
 import sys
 import random
+import re
 
 data_path = '../data/schizophrenia/'
 
 
-def parse_cvs():
+def parse_cvs(file_name='/anonymized_user_manifest.csv'):
     cvs_data = []
-    for line in open(data_path + '/anonymized_user_manifest.csv').readlines()[1:]:
+    for line in open(data_path + file_name).readlines()[1:]:
         data_entry = {}
         data_entry['user_id'] = line.split(',')[0]
         if line.split(',')[1] == 'schizophrenia':
@@ -23,8 +24,11 @@ def parse_cvs():
 
 
 def preprocess_tweet(tweet):
-    tweet = tweet.replace(':','COLON').replace('|','PIPE').replace('\n', 'NEWLINE')
-    tweet = ' '.join([x for x in tweet.split(' ') if not x.startswith('httpCOLON//') and not x.startswith('httpsCOLON//')])
+    tweet = re.sub(r'http[s]?:\/\/(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', '', tweet)
+    tweet = re.sub(r'@[a-zA-Z0-9_]*', '', tweet)
+    tweet = tweet.replace('\n', ' ')
+    tweet = tweet.lower()
+    # tweet = tweet.replace(':','COLON').replace('|','PIPE').replace('\n', 'NEWLINE')
     return tweet
 
 
@@ -42,28 +46,21 @@ def get_tweets(user_id, num_tweets=-1):
     return result
 
 
-def get_label(user_id):
-    cvs_data = parse_cvs()
+def get_label(user_id, file_name='/anonymized_user_manifest.csv'):
+    cvs_data = parse_cvs(file_name)
     for entry in cvs_data:
         if entry['user_id'] == user_id:
             return entry['label']
     return None
 
 
-def get_user_ids(folds):
+def get_user_ids(folds, file_name='/anonymized_user_manifest.csv'):
     result = []
-    cvs_data = parse_cvs()
+    cvs_data = parse_cvs(file_name)
     for entry in cvs_data:
         if entry['fold'] in folds:
             result.append(entry['user_id'])
     return result
-
-
-def vw_entry(tweets, label):
-    if label > 0:
-        return '+1 | %s' % (' '.join(tweets))
-    else:
-        return '-1 | %s' % (' '.join(tweets))
 
 
 def vw_data(folds, num_tweets=50):
@@ -72,17 +69,3 @@ def vw_data(folds, num_tweets=50):
     for user_id in user_ids:
         result.append(vw_entry(get_tweets(user_id, num_tweets), get_label(user_id)))
     return '\n'.join(result) + '\n'
-
-def generate_training_splits(func, prefix):
-    for i in range(10):
-        train_folds = range(10)
-        test_fold = [train_folds.pop(i)]
-        fp = open('%s.train.%d.data'%(prefix, i), 'w')
-        fp.write(func(train_folds).encode('utf-8'))
-        fp.close()
-        fp = open('%s.test.%d.data'%(prefix, i), 'w')
-        fp.write(func(test_fold).encode('utf-8'))
-        fp.close()
-
-if __name__ == '__main__':
-    generate_training_splits(vw_data, 'vw/vw')
