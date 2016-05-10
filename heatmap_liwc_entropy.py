@@ -13,7 +13,7 @@ import sys
 
 
 class HeatmapLiwc:
-    txt_data_path = '../data/txt/'
+    txt_data_path = '../data/schizophrenia_txt/'
     counterCategoryList_path = './counterCategoryList'
     liwcEntropyFeatures_path = './liwcEntropyFeatures.csv'
     category_keys = ['funct', 'pronoun', 'ppron', 'i', 'we', 'you', 'shehe',
@@ -78,7 +78,7 @@ class HeatmapLiwc:
         return sortedId
 
     def getSortedDocumentList(self):
-        documentList = [' '.join(open('%sliwc.%s.txt' % (self.txt_data_path, user_id))) for user_id in self.getSortedId()]
+        documentList = [' '.join(open('%s%s.txt' % (self.txt_data_path, user_id))) for user_id in self.getSortedId()]
         return documentList
 
     def calculateKLDivergence(self, pProb, qProb):
