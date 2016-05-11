@@ -11,7 +11,7 @@ import re
 
 
 class LdaLiwc:
-    txt_data_path = '../data/txt/'
+    txt_data_path = '../data/schizophrenia_txt/'
     output_path = './ldafeatures.csv'
     output_path2 = './ldafeatures2.csv'
     mylist = ['just', 'via', 'make', 'can', 'amp', 'get', 'nbsp']
@@ -28,8 +28,8 @@ class LdaLiwc:
         return sortedId
 
     def getSortedDocumentList(self):
-        self.userDocumentList = [' '.join(open('%sliwc.%s.txt' % (self.txt_data_path, user_id))) for user_id in self.getSortedId()]
-        documentLineList = [open('%sliwc.%s.txt' % (self.txt_data_path, user_id)).readlines() for user_id in self.getSortedId()]
+        self.userDocumentList = [' '.join(open('%s%s.txt' % (self.txt_data_path, user_id))) for user_id in self.getSortedId()]
+        documentLineList = [open('%s%s.txt' % (self.txt_data_path, user_id)).readlines() for user_id in self.getSortedId()]
         tempDocumentList = []
         for documentLine in documentLineList:
             maxline = 300
