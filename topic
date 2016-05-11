@@ -1,39 +1,39 @@
-[(0, u'0.006*wrote + 0.006*peopl + 0.006*thiscolon + 0.005*will + 0.004*one + 0.004*say + 0.004*vote + 0.003*kill + 0.003*right + 0.003*obama + 0.003*know + 0.003*war + 0.003*year + 0.003*want + 0.003*call + 0.003*need + 0.003*like + 0.003*work + 0.003*god + 0.002*new'), 
+[(0, u'0.070*follow + 0.031*unfollow + 0.031*new + 0.026*one + 0.025*stat + 0.021*today + 0.018*love + 0.015*inspir + 0.013*now + 0.011*day + 0.010*post + 0.009*thank + 0.009*posit + 0.009*brand + 0.008*energi + 0.008*blog + 0.008*peopl + 0.008*pleas + 0.007*happi + 0.006*back'), 
 
-(1, u'0.014*like + 0.013*comic + 0.009*nod + 0.009*lol + 0.009*now + 0.008*smile + 0.008*back + 0.007*love + 0.007*eye + 0.007*softli + 0.006*look + 0.005*know + 0.005*kiss + 0.005*yeah + 0.005*guy + 0.005*giggl + 0.005*hand + 0.004*laugh + 0.004*one + 0.004*take'), 
+(1, u'0.034*new + 0.032*video + 0.018*lickordi + 0.016*girl + 0.015*majorstag + 0.014*bitch + 0.013*concert + 0.012*bottom + 0.011*citi + 0.010*artist + 0.009*thank + 0.009*dyke + 0.007*check + 0.007*watch + 0.007*shot + 0.007*good + 0.006*singl + 0.006*hit + 0.006*nyc + 0.006*heard'), 
 
-(2, u'0.016*lol + 0.015*colon + 0.013*like + 0.010*fuck + 0.009*love + 0.008*know + 0.008*want + 0.008*got + 0.007*shit + 0.006*good + 0.006*one + 0.006*need + 0.006*now + 0.006*day + 0.006*time + 0.006*see + 0.004*feel + 0.004*back + 0.004*say + 0.004*look'), 
+(2, u'0.022*thank + 0.013*love + 0.013*music + 0.010*new + 0.008*great + 0.006*day + 0.006*one + 0.006*support + 0.005*wrote + 0.005*good + 0.005*like + 0.005*regga + 0.005*today + 0.005*kind + 0.005*now + 0.005*look + 0.004*hope + 0.004*revolut + 0.004*happi + 0.004*book'), 
 
-(3, u'0.012*live + 0.010*colond + 0.010*mal + 0.009*coloncolon + 0.008*indian + 0.007*gang + 0.007*respect + 0.007*pak + 0.006*colon + 0.006*mixtap + 0.005*odi + 0.005*india + 0.005*match + 0.004*sri + 0.004*hyderabad + 0.004*cricket + 0.004*run + 0.004*t20 + 0.004*follow + 0.003*eng'), 
+(3, u'0.032*lol + 0.013*like + 0.008*good + 0.008*day + 0.008*got + 0.007*love + 0.007*know + 0.006*time + 0.006*need + 0.006*now + 0.006*want + 0.006*shit + 0.005*back + 0.005*today + 0.005*lmao + 0.005*one + 0.005*see + 0.005*man + 0.005*right + 0.005*come'), 
 
-(4, u'0.018*colon + 0.009*welsh + 0.007*wale + 0.007*back + 0.006*will + 0.006*team + 0.005*arsen + 0.005*player + 0.005*win + 0.005*footbal + 0.005*play + 0.004*done + 0.004*mate + 0.004*nation + 0.004*goal + 0.004*english + 0.004*england + 0.003*leagu + 0.003*ukip + 0.003*game'), 
+(4, u'0.010*win + 0.008*billsmafia + 0.008*auspol + 0.007*will + 0.007*blue + 0.006*dey + 0.006*visit + 0.005*awww + 0.005*hyderabad + 0.005*orlean + 0.005*time + 0.004*elli + 0.004*big + 0.004*new + 0.004*daughter + 0.004*nola + 0.004*enter + 0.004*red + 0.004*white + 0.003*nom'), 
 
-(5, u'0.040*book + 0.032*kindl + 0.030*free + 0.022*thriller + 0.018*sampl + 0.018*repli + 0.017*amazoncart + 0.015*ocean + 0.010*amazon + 0.009*wire + 0.008*outcast + 0.008*shore + 0.008*kingdom + 0.007*tara + 0.007*island + 0.007*eco + 0.006*novel + 0.006*opscolon + 0.006*ebook + 0.006*solar'), 
+(5, u'0.013*video + 0.012*like + 0.010*indian + 0.006*nigeria + 0.006*fifa + 0.005*fuck + 0.005*yakuza + 0.005*sri + 0.004*will + 0.004*india + 0.004*children + 0.004*takumi + 0.004*eelam + 0.003*new + 0.003*2009 + 0.003*eagl + 0.003*lka + 0.003*gumi + 0.003*manchest + 0.003*team'), 
 
-(6, u'0.014*game + 0.013*win + 0.010*final + 0.010*rochest + 0.009*girl + 0.008*boy + 0.007*team + 0.006*billsmafia + 0.006*new + 0.006*majorstag + 0.006*play + 0.006*will + 0.005*basketballcolon + 0.005*concert + 0.005*blue + 0.005*artist + 0.005*year + 0.005*video + 0.005*last + 0.004*valley'), 
+(6, u'0.010*vai + 0.006*startup + 0.004*trade + 0.004*toucan + 0.004*play + 0.004*entrepreneur + 0.004*dogecoin + 0.003*join + 0.003*oiler + 0.003*sunburnmumbai + 0.003*team + 0.003*yll + 0.002*send + 0.002*song + 0.002*essay + 0.002*min + 0.002*respectthecomeup + 0.002*ill + 0.002*start + 0.002*bangalor'), 
 
-(7, u'0.022*android + 0.020*gameinsight + 0.020*androidgam + 0.010*love + 0.009*now + 0.009*even + 0.009*game + 0.007*tri + 0.007*beauti + 0.007*island + 0.007*bbc + 0.006*great + 0.006*need + 0.006*awww + 0.006*new + 0.005*collect + 0.005*better + 0.005*gold + 0.005*like + 0.005*food'), 
+(7, u'0.018*photo + 0.012*beauti + 0.009*new + 0.008*facebook + 0.008*bbc + 0.007*love + 0.006*watch + 0.005*art + 0.005*welsh + 0.005*post + 0.005*cat + 0.004*wale + 0.004*coffe + 0.004*paint + 0.004*snowbunni + 0.004*great + 0.004*cuck + 0.003*del + 0.003*lana + 0.003*amaz'), 
 
-(8, u'0.037*dmradionet + 0.008*ett + 0.008*kun + 0.007*ole + 0.006*colon + 0.005*pit + 0.004*mit + 0.004*olen + 0.003*sit + 0.003*its + 0.003*kai + 0.003*pipe + 0.003*tai + 0.003*oli + 0.003*jimmi + 0.003*vai + 0.003*ovat + 0.003*vain + 0.003*nyt + 0.003*viel'), 
+(8, u'0.014*love + 0.011*nod + 0.011*smile + 0.009*back + 0.009*eye + 0.009*like + 0.008*fuck + 0.008*want + 0.008*softli + 0.008*kiss + 0.008*look + 0.007*yeah + 0.007*know + 0.007*okay + 0.006*stop + 0.006*laugh + 0.006*sorri + 0.006*hand + 0.006*giggl + 0.005*head'), 
 
-(9, u"0.052*new + 0.051*video + 0.030*lickordi + 0.028*gotta + 0.026*girl + 0.025*bitch + 0.024*shotbi + 0.022*singl + 0.020*bottom + 0.016*check + 0.016*heard + 0.015*citi + 0.015*dyke + 0.013*getheard + 0.011*getglu + 0.011*shot + 0.009*hiddenrealm + 0.007*warfare'' + 0.007*hit + 0.007*listen"), 
+(9, u'0.019*gamerg + 0.010*therapi + 0.009*practic + 0.009*free + 0.008*join + 0.006*therapist + 0.006*client + 0.006*work + 0.006*mjharz + 0.006*fear + 0.005*merchant + 0.004*webstor + 0.004*clear + 0.004*video + 0.004*harz + 0.004*need + 0.004*audio + 0.004*develop + 0.004*person + 0.003*meet'), 
 
-(10, u'0.054*music + 0.032*regga + 0.029*thank + 0.027*revolut + 0.023*support + 0.019*soundcloud + 0.018*musicvideo + 0.018*kind + 0.016*checkout + 0.014*fuze + 0.013*love + 0.012*concert + 0.011*1st + 0.010*enjoy + 0.010*new + 0.009*may + 0.009*haha + 0.008*one + 0.008*prod + 0.006*feat'), 
+(10, u'0.035*book + 0.033*kindl + 0.026*free + 0.023*thriller + 0.018*repli + 0.018*sampl + 0.017*amazoncart + 0.015*ocean + 0.009*wire + 0.008*kingdom + 0.008*outcast + 0.008*shore + 0.008*tara + 0.007*amazon + 0.007*eco + 0.006*solar + 0.006*island + 0.006*kidnap + 0.006*climat + 0.006*ebook'), 
 
-(11, u'0.034*mutta + 0.030*olla + 0.030*voi + 0.027*gamerg + 0.023*niin + 0.022*hyv + 0.017*kyll + 0.016*kuin + 0.010*onko + 0.010*ehk + 0.006*oulu + 0.006*ihan + 0.006*muuten + 0.006*aika + 0.005*siit + 0.005*siin + 0.005*juuri + 0.004*votearianagrand + 0.004*muuta + 0.004*suomen'), 
+(11, u'0.013*haha + 0.007*one + 0.007*good + 0.007*day + 0.006*time + 0.006*now + 0.006*think + 0.006*like + 0.006*look + 0.006*got + 0.005*watch + 0.005*mate + 0.005*will + 0.005*night + 0.005*back + 0.005*thank + 0.005*know + 0.005*work + 0.004*well + 0.004*see'), 
 
-(12, u'0.023*report + 0.022*millennium + 0.018*clean + 0.014*stori + 0.013*dey + 0.010*new + 0.010*today + 0.010*visit + 0.010*top + 0.009*orlean + 0.008*will + 0.007*nola + 0.007*time + 0.006*commerci + 0.006*big + 0.006*green + 0.006*offic + 0.006*trip + 0.005*like + 0.005*easi'), 
+(12, u'0.026*yoo + 0.015*pal + 0.011*rochest + 0.010*final + 0.009*girl + 0.009*dat + 0.008*live + 0.008*footbal + 0.008*basketbal + 0.008*game + 0.008*mal + 0.008*boy + 0.006*gang + 0.006*respect + 0.006*mum + 0.006*aww + 0.006*good + 0.005*yay + 0.005*hey + 0.005*wot'), 
 
-(13, u'0.019*colon + 0.016*good + 0.013*thank + 0.011*morn + 0.008*ang + 0.008*ako + 0.007*lmaoooo + 0.006*happi + 0.006*day + 0.006*smile + 0.006*watch + 0.005*hahaha + 0.005*gma7 + 0.005*6pack + 0.005*gma + 0.004*ate + 0.004*lmaooooo + 0.004*night + 0.004*lang + 0.004*mga'), 
+(13, u"0.030*nigga + 0.018*fuck + 0.016*android + 0.015*photo + 0.015*gameinsight + 0.015*androidgam + 0.015*shit + 0.014*bitch + 0.009*ain't + 0.008*now + 0.008*got + 0.007*even + 0.007*ass + 0.006*wit + 0.006*hoe + 0.005*bout + 0.005*like + 0.005*island + 0.005*game + 0.005*new"), 
 
-(14, u'0.011*know + 0.009*will + 0.009*peopl + 0.008*world + 0.007*now + 0.007*one + 0.007*thank + 0.007*mental + 0.006*like + 0.006*see + 0.005*read + 0.005*help + 0.005*time + 0.005*ill + 0.005*say + 0.005*think + 0.005*want + 0.004*tri + 0.004*book + 0.004*life'), 
+(14, u'0.015*love + 0.014*pleas + 0.010*like + 0.009*life + 0.008*day + 0.008*econom + 0.008*might + 0.007*feel + 0.007*think + 0.007*want + 0.007*mani + 0.007*peopl + 0.007*work + 0.007*human + 0.007*will + 0.006*world + 0.006*live + 0.006*got + 0.006*hope + 0.006*time'), 
 
-(15, u'0.072*follow + 0.037*new + 0.029*unfollow + 0.024*one + 0.022*today + 0.020*statscolon + 0.016*now + 0.014*inspir + 0.014*love + 0.012*post + 0.012*video + 0.011*blog + 0.010*thank + 0.010*day + 0.010*music + 0.009*brand + 0.009*posit + 0.008*energi + 0.008*pleas + 0.008*colon'), 
+(15, u'0.079*dmradionet + 0.010*pak + 0.008*odi + 0.007*match + 0.007*follow + 0.007*run + 0.006*t20 + 0.006*jimmi + 0.006*cricket + 0.005*eng + 0.004*target + 0.004*zim + 0.004*test + 0.004*1st + 0.004*pakistan + 0.004*ind + 0.003*day + 0.003*news + 0.003*2nd + 0.003*aziz'), 
 
-(16, u'0.039*photocolon + 0.036*yoo + 0.019*pal + 0.013*dat + 0.009*colon + 0.008*mum + 0.008*aww + 0.007*yay + 0.007*good + 0.007*edward + 0.007*xxx + 0.007*hey + 0.007*der + 0.007*wot + 0.006*fur + 0.006*day + 0.006*hee + 0.006*pisc + 0.006*well + 0.005*supa'), 
+(16, u'0.023*new + 0.017*album + 0.016*mathi + 0.013*grey + 0.012*post + 0.012*music + 0.011*video + 0.009*singl + 0.009*now + 0.009*show + 0.008*great + 0.008*photo + 0.008*come + 0.008*check + 0.007*today + 0.007*song + 0.007*itun + 0.007*featur + 0.007*download + 0.006*awesom'), 
 
-(17, u'0.020*new + 0.019*photo + 0.015*post + 0.014*mathi + 0.013*facebook + 0.011*grey + 0.008*album + 0.007*show + 0.007*awesom + 0.006*great + 0.006*music + 0.005*come + 0.005*check + 0.005*video + 0.005*today + 0.005*two + 0.004*road + 0.004*step + 0.004*art + 0.004*yle'), 
+(17, u'0.009*like + 0.009*peopl + 0.009*now + 0.007*will + 0.007*comic + 0.007*know + 0.007*one + 0.005*world + 0.005*say + 0.005*time + 0.004*think + 0.004*right + 0.004*year + 0.004*see + 0.004*day + 0.003*mental + 0.003*even + 0.003*book + 0.003*guy + 0.003*lol'), 
 
-(18, u'0.048*colon + 0.016*love + 0.009*like + 0.007*day + 0.007*pleas + 0.007*thank + 0.006*feel + 0.006*good + 0.006*think + 0.005*want + 0.005*time + 0.005*happi + 0.005*life + 0.005*work + 0.005*one + 0.005*will + 0.004*got + 0.004*peopl + 0.004*hope + 0.004*mani'), 
+(18, u'0.013*like + 0.009*know + 0.008*one + 0.008*peopl + 0.007*want + 0.007*think + 0.006*love + 0.006*fuck + 0.006*time + 0.005*good + 0.005*now + 0.005*thing + 0.005*realli + 0.005*need + 0.005*got + 0.005*say + 0.005*see + 0.005*will + 0.004*tri + 0.004*look'), 
 
-(19, u'0.013*like + 0.008*one + 0.008*think + 0.008*know + 0.008*peopl + 0.006*good + 0.006*now + 0.006*time + 0.005*want + 0.005*realli + 0.005*thing + 0.004*look + 0.004*say + 0.004*fuck + 0.004*will + 0.004*well + 0.004*tri + 0.004*need + 0.004*got + 0.004*never')]
+(19, u'0.008*ett + 0.008*fuze + 0.008*kun + 0.007*mutta + 0.007*ole + 0.007*olla + 0.007*voi + 0.006*1st + 0.006*concert + 0.005*leo + 0.005*niin + 0.005*pit + 0.005*may + 0.005*hyv + 0.004*mit + 0.004*olen + 0.004*kyll + 0.004*kuin + 0.003*its + 0.003*sit')]
