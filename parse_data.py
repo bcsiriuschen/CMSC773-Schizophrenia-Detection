@@ -6,9 +6,9 @@ import re
 data_path = '../data/schizophrenia/'
 
 
-def parse_cvs(file_name='/anonymized_user_manifest.csv'):
+def parse_cvs(file_name='../data/schizophrenia/anonymized_user_manifest.csv'):
     cvs_data = []
-    for line in open(data_path + file_name).readlines()[1:]:
+    for line in open(file_name).readlines()[1:]:
         data_entry = {}
         data_entry['user_id'] = line.split(',')[0]
         if line.split(',')[1] == 'schizophrenia':
@@ -19,6 +19,7 @@ def parse_cvs(file_name='/anonymized_user_manifest.csv'):
         data_entry['gender'] = line.split(',')[3]
         data_entry['num_tweets'] = int(line.split(',')[4])
         data_entry['fold'] = int(line.split(',')[5])
+        data_entry['train_only'] = int(line.split(',')[6])
         cvs_data.append(data_entry)
     return cvs_data
 
@@ -46,7 +47,7 @@ def get_tweets(user_id, num_tweets=-1):
     return result
 
 
-def get_label(user_id, file_name='/anonymized_user_manifest.csv'):
+def get_label(user_id, file_name='../data/schizophrenia/anonymized_user_manifest.csv'):
     cvs_data = parse_cvs(file_name)
     for entry in cvs_data:
         if entry['user_id'] == user_id:
@@ -54,10 +55,12 @@ def get_label(user_id, file_name='/anonymized_user_manifest.csv'):
     return None
 
 
-def get_user_ids(folds, file_name='/anonymized_user_manifest.csv'):
+def get_user_ids(folds, file_name='../data/schizophrenia/anonymized_user_manifest.csv', test=False):
     result = []
     cvs_data = parse_cvs(file_name)
     for entry in cvs_data:
+        if test is True and entry['train_only'] == 1:
+            continue
         if entry['fold'] in folds:
             result.append(entry['user_id'])
     return result

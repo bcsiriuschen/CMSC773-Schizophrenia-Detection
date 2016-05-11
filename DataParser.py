@@ -6,13 +6,14 @@ class DataParser:
 
     def __init__(self, data_path, csv_filename):
         self.data_path = data_path
+        self.user_ids = []
         self.label = {}
         self.fold = {}
         self.tweets = {}
 
         self.user_ids_from_fold = {}
         self.user_ids_from_label = {}
-        for i in range(1,11):
+        for i in range(1, 11):
             self.user_ids_from_fold[i] = []
             self.user_ids_from_fold[-i] = []
         self.user_ids_from_label[1] = []
@@ -20,6 +21,7 @@ class DataParser:
 
         for line in open(csv_filename).readlines()[1:]:
             user_id = line.split(',')[0].strip()
+            self.user_ids.append(user_id)
             label = line.split(',')[1]
             if line.split(',')[1] == 'schizophrenia':
                 label = 1
@@ -40,6 +42,9 @@ class DataParser:
 
     def get_fold(self, user_id):
         return self.fold[user_id]
+
+    def get_users(self):
+        return self.user_ids
 
     def get_tweets(self, user_id, ext='tweets'):
         if self.tweets.get(user_id) is None:
@@ -88,6 +93,10 @@ if __name__ == '__main__':
     dp = DataParser('../data/schizophrenia/',
                     '../data/schizophrenia/anonymized_user_manifest.csv')
 
-    tweets = dp.get_tweets('_UqnfSjiEX')
-    for t in tweets:
-        print t
+    user_ids = dp.get_users()
+    for curr_id in user_ids:
+        fp = open('%s.txt' % (curr_id), 'w')
+        tweets = dp.get_tweets(curr_id)
+        for t in tweets:
+            fp.write(t.encode('utf-8').strip() + '\n')
+        fp.close()
