@@ -4,7 +4,7 @@ from CSVParser import CSVParser
 
 def libsvm_entry(features, label):
     return str(label) + ' ' + ' '. \
-        join(['%d: %f' % (i+1, f) for (i, f) in enumerate(features)])
+        join(['%d:%f' % (i+1, f) for (i, f) in enumerate(features)])
 
 
 def generate_training_splits(feature_file, csv_file, prefix):
