@@ -12,11 +12,14 @@ def get_data(filename):
     data = load_svmlight_file(filename)
     return data[0], data[1]
 
-n_estimators = 300
+n_estimators = 600
 # A learning rate of 1. may not be optimal for both SAMME and SAMME.R
-learning_rate = 0.5
+learning_rate = 0.1
 
-file_path = './liwcData/'
+file_path = './early/'
+
+# early real 0.208797280237
+# early discrete 0.19912499489
 
 dt_stump_err_list = []
 dt_err_list = []
@@ -26,8 +29,8 @@ ada_real_err_ave = np.zeros((n_estimators,))
 ada_real_err_train_ave = np.zeros((n_estimators,))
 
 for fold in range(10):
-    X_test, y_test = get_data('%sliwc.test.%s.data' % (file_path, str(fold)))
-    X_train, y_train = get_data('%sliwc.train.%s.data' % (file_path, str(fold)))
+    X_test, y_test = get_data('%searly.test.%s.scale.data' % (file_path, str(fold)))
+    X_train, y_train = get_data('%searly.train.%s.scale.data' % (file_path, str(fold)))
 
     dt_stump = DecisionTreeClassifier(max_depth=1, min_samples_leaf=1)
     dt_stump.fit(X_train, y_train)
@@ -73,6 +76,8 @@ for fold in range(10):
         ada_real_err_train[i] = zero_one_loss(y_pred, y_train)/10.
     ada_real_err_train_ave += ada_real_err_train
 
+print min(ada_real_err_ave)
+print min(ada_discrete_err_ave)
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
